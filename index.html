@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Okewunmi Solomon Dynasty</title>
+  <style>
+    :root{
+      --gold:#ffd700;
+      --royal:#0b2e59;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:"Georgia", serif;background:#000;color:#fff;overflow-x:hidden}
+
+    header{
+      position:fixed;top:0;left:0;right:0;z-index:50;
+      backdrop-filter: blur(6px);
+      background:rgba(0,0,0,.5);
+      padding:15px;text-align:center;
+    }
+    header h1{
+      font-family:"Cinzel", serif;
+      font-size:clamp(1.5rem,5vw,3rem);
+      font-weight:900;
+      color:var(--gold);
+      letter-spacing:2px;
+      text-shadow:0 4px 12px rgba(0,0,0,.7);
+      animation: fadeDown 1.5s ease;
+    }
+
+    .hero{
+      height:100vh;
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+    .slide{
+      position:absolute;inset:0;
+      background-size:cover;background-position:center;
+      opacity:0;transition:opacity 1.5s ease-in-out;
+    }
+    .slide.active{opacity:1}
+
+    .overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(0,0,0,.3),rgba(0,0,0,.65));
+    }
+
+    .content{
+      position:relative;z-index:5;
+      padding:20px;
+      max-width:900px;
+    }
+    .verse{
+      font-size:clamp(1.2rem,3vw,2rem);
+      font-weight:600;
+      line-height:1.5;
+      text-shadow:0 4px 15px rgba(0,0,0,.8);
+      opacity:0;transition:opacity 1.5s ease-in-out;
+    }
+    .verse.show{opacity:1}
+
+    @keyframes fadeDown{
+      from{opacity:0;transform:translateY(-40px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    footer{
+      background:#0c0c0c;color:#ddd;text-align:center;
+      padding:18px;font-size:.9rem;
+      border-top:1px solid rgba(255,255,255,.1)
+    }
+
+    @media (max-width:720px){
+      header h1{font-size:1.6rem}
+      .verse{font-size:1.2rem}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Okewunmi Solomon Dynasty</h1>
+  </header>
+
+  <main class="hero" aria-live="polite">
+    <div id="slides"></div>
+    <div class="overlay"></div>
+    <div class="content">
+      <div id="verse" class="verse">Loading…</div>
+    </div>
+  </main>
+
+  <footer>
+    “But as for me and my household, we will serve the Lord.” — Joshua 24:15<br/>
+    &copy; 2025 Okewunmi Solomon Dynasty
+  </footer>
+
+  <script>
+    const slidesData = [
+      {
+        text: "“Love is patient, love is kind.” — 1 Corinthians 13:4",
+        bg: "https://source.unsplash.com/1600x900/?bible"
+      },
+      {
+        text: "“Train up a child in the way he should go.” — Proverbs 22:6",
+        bg: "https://source.unsplash.com/1600x900/?church"
+      },
+      {
+        text: "“The fear of the Lord is the beginning of wisdom.” — Proverbs 9:10",
+        bg: "https://source.unsplash.com/1600x900/?cross"
+      },
+      {
+        text: "“Children are a heritage from the Lord.” — Psalm 127:3",
+        bg: "https://source.unsplash.com/1600x900/?children,christian"
+      },
+      {
+        text: "“The light shines in the darkness, and the darkness has not overcome it.” — John 1:5",
+        bg: "https://source.unsplash.com/1600x900/?light,faith"
+      },
+      {
+        text: "“Family is the compass that guides us.” — Unknown",
+        bg: "https://source.unsplash.com/1600x900/?family,christian"
+      }
+    ];
+
+    const slidesHost = document.getElementById('slides');
+    const verseBox = document.getElementById('verse');
+
+    slidesData.forEach((s, i)=>{
+      const d = document.createElement('div');
+      d.className = 'slide' + (i===0 ? ' active' : '');
+      d.style.backgroundImage = `url('${s.bg}')`;
+      slidesHost.appendChild(d);
+    });
+
+    let idx = 0;
+    function show(i){
+      const allSlides = document.querySelectorAll('.slide');
+      allSlides.forEach(el => el.classList.remove('active'));
+      allSlides[i].classList.add('active');
+
+      verseBox.classList.remove('show');
+      setTimeout(()=>{
+        verseBox.textContent = slidesData[i].text;
+        verseBox.classList.add('show');
+      },500); // slight delay for smooth fade
+    }
+
+    function next(){
+      idx = (idx + 1) % slidesData.length;
+      show(idx);
+    }
+
+    show(0);
+    setInterval(next, 6000); // 6s per slide
+  </script>
+</body>
+</html>

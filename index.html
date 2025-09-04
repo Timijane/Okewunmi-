@@ -1,437 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Okewunmi Solomon Dynasty</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Okewunmi Solomon Dynasty</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; font-family: 'Georgia', serif; overflow-x: hidden; background: #000; color: #fff; }
 
-    body, html {
-  height: 100%;
-  font-family: 'Georgia', serif;
-  overflow-x: hidden; /* hides horizontal scroll */
-  overflow-y: auto;   /* allows vertical scrolling */
-    }
+  /* Slideshow container */
+  .slideshow-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -1; }
 
-    /* Background slideshow with Christian images */
-    .slideshow {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -1;
-      animation: fadeBg 40s infinite;
-      background-size: cover;
-      background-position: center;
-    }
+  .slide {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover; opacity: 0; transition: opacity 1s ease-in-out;
+  }
 
-    @keyframes fadeBg {
-      0%   { background: url('https://images.unsplash.com/photo-1508780709619-79562169bc64') center/cover no-repeat; }
-      20%  { background: url('https://images.unsplash.com/photo-1523580494863-6f3031224c94') center/cover no-repeat; }
-      40%  { background: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee') center/cover no-repeat; }
-      60%  { background: url('https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d') center/cover no-repeat; }
-      80%  { background: url('https://images.unsplash.com/photo-1503264116251-35a269479413') center/cover no-repeat; }
-      100% { background: url('https://images.unsplash.com/photo-1524492449090-1a065f3a86ab') center/cover no-repeat; }
-    }
+  .slide.active { opacity: 1; }
 
-    /* Overlay for dark effect */
-    .overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
-      z-index: 0;
-    }
+  .overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.5); z-index: 0; }
 
-    /* Main content */
-    .content {
-      position: relative;
-      z-index: 1;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: white;
-      padding: 20px;
-    }
+  /* Content */
+  .content { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
 
-    h1 {
-      font-size: 4.5rem; /* increased size */
-      font-weight: bold;
-      text-shadow: 3px 3px 12px rgba(0,0,0,0.8);
-      margin-bottom: 30px;
-      animation: fadeIn 3s ease-in-out;
-      letter-spacing: 2px;
-    }
+  h1 {
+    font-size: 4.5rem; font-weight: 900; color: #ffd700;
+    text-shadow: 4px 4px 15px rgba(0,0,0,0.7); margin-bottom: 30px;
+    animation: floatIn 2s ease forwards;
+  }
 
-    /* Scripture rotating text */
-    .scripture {
-      font-size: 1.7rem;
-      max-width: 800px;
-      line-height: 1.6;
-      opacity: 0;
-      position: absolute;
-      transition: opacity 2s ease-in-out;
-      text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
-    }
+  @keyframes floatIn { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
 
-    .scripture.active {
-      opacity: 1;
-      position: relative;
-    }
+  .scripture {
+    font-size: 1.8rem; max-width: 900px; line-height: 1.6;
+    opacity: 0; position: absolute; color: #fff; text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+    transition: opacity 1s ease-in-out;
+  }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+  .scripture.active { opacity: 1; position: relative; }
 
-    @media (max-width: 768px) {
-      h1 { font-size: 2.5rem; }
-      .scripture { font-size: 1.2rem; padding: 10px; }
-    }
-  </style>
+  @media (max-width: 768px) {
+    h1 { font-size: 2.8rem; }
+    .scripture { font-size: 1.3rem; padding: 0 10px; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- Background slideshow -->
-  <div class="slideshow"></div>
-  <div class="overlay"></div>
+<!-- Slideshow Images -->
+<div class="slideshow-container">
+  <img src="https://source.unsplash.com/1600x900/?church,cross" class="slide active" alt="Christian Image 1">
+  <img src="https://source.unsplash.com/1600x900/?bible,prayer" class="slide" alt="Christian Image 2">
+  <img src="https://source.unsplash.com/1600x900/?faith,christ" class="slide" alt="Christian Image 3">
+  <img src="https://source.unsplash.com/1600x900/?worship,light" class="slide" alt="Christian Image 4">
+  <img src="https://source.unsplash.com/1600x900/?god,church" class="slide" alt="Christian Image 5">
+</div>
+<div class="overlay"></div>
 
-  <!-- Content -->
-  <div class="content">
-    <h1>Okewunmi Solomon Dynasty</h1>
+<!-- Main Content -->
+<div class="content">
+  <h1>Okewunmi Solomon Dynasty</h1>
 
-    <!-- Scriptures -->
-    <div class="scripture active">“But as for me and my house, we will serve the Lord.” – Joshua 24:15</div>
-    <div class="scripture">“The Lord is my shepherd, I shall not want.” – Psalm 23:1</div>
-    <div class="scripture">“I can do all things through Christ who strengthens me.” – Philippians 4:13</div>
-    <div class="scripture">“Train up a child in the way he should go, and when he is old he will not depart from it.” – Proverbs 22:6</div>
-    <div class="scripture">“But they that wait upon the Lord shall renew their strength.” – Isaiah 40:31</div>
-  </div>
+  <div class="scripture active">“But as for me and my house, we will serve the Lord.” – Joshua 24:15</div>
+  <div class="scripture">“The Lord is my shepherd, I shall not want.” – Psalm 23:1</div>
+  <div class="scripture">“I can do all things through Christ who strengthens me.” – Philippians 4:13</div>
+  <div class="scripture">“Train up a child in the way he should go, and when he is old he will not depart from it.” – Proverbs 22:6</div>
+  <div class="scripture">“But they that wait upon the Lord shall renew their strength.” – Isaiah 40:31</div>
+</div>
 
-  <script>
-    // Rotate scriptures
-    const scriptures = document.querySelectorAll('.scripture');
-    let current = 0;
+<script>
+  // Preload images to reduce lag
+  const imageUrls = [
+    "https://source.unsplash.com/1600x900/?church,cross",
+    "https://source.unsplash.com/1600x900/?bible,prayer",
+    "https://source.unsplash.com/1600x900/?faith,christ",
+    "https://source.unsplash.com/1600x900/?worship,light",
+    "https://source.unsplash.com/1600x900/?god,church"
+  ];
 
-    setInterval(() => {
-      scriptures[current].classList.remove('active');
-      current = (current + 1) % scriptures.length;
-      scriptures[current].classList.add('active');
-    }, 6000); // every 6s
-  </script>
+  imageUrls.forEach(url => { const img = new Image(); img.src = url; });
+
+  // Slides and scriptures rotation
+  const slides = document.querySelectorAll('.slide');
+  const scriptures = document.querySelectorAll('.scripture');
+  let index = 0;
+
+  function rotateSlides() {
+    slides.forEach(slide => slide.classList.remove('active'));
+    scriptures.forEach(text => text.classList.remove('active'));
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+    scriptures[index].classList.add('active');
+  }
+
+  setInterval(rotateSlides, 6000); // every 6s
+</script>
 
 </body>
 </html>
-
-<!-- About Page -->
-<section id="about" class="py-16 bg-gray-50">
-
-  <!-- Dynasty Introduction with rotating background -->
-  <div class="relative h-[500px] flex items-center justify-center text-center text-white rounded-2xl shadow-2xl overflow-hidden">
-    <!-- Background slideshow -->
-    <div class="absolute inset-0 slideshow">
-      <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-100" style="background-image: url('https://source.unsplash.com/1600x900/?church,cross');"></div>
-      <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: url('https://source.unsplash.com/1600x900/?bible,faith');"></div>
-      <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: url('https://source.unsplash.com/1600x900/?family,christian');"></div>
-    </div>
-
-    <!-- Dark overlay -->
-    <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-
-    <!-- Content -->
-    <div class="relative z-10 max-w-4xl px-6">
-      <h2 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-wide text-yellow-300 drop-shadow-lg">
-        Welcome to the Okewunmi Dynasty
-      </h2>
-      <p class="text-lg leading-relaxed font-semibold mb-4">
-        The <span class="text-blue-400">Okewunmi Dynasty</span> is a family rooted in <span class="text-purple-300">truth, sacrifice, faith, and legacy</span>. 
-        At the heart of this great family is <b class="text-yellow-200">Elder Solomon Okewunmi</b>, a man of integrity, wisdom, and devotion.
-      </p>
-      <p class="text-lg leading-relaxed font-semibold">
-        Now at the age of <span class="text-green-300">71 (in 2025)</span>, Elder Solomon stands as a pillar of strength. By his side is 
-        <b class="text-pink-300">Deaconess Adebola Okewunmi</b>, a virtuous woman and nurturing mother. Together, they built a home of love, discipline, and godliness.
-      </p>
-    </div>
-  </div>
-
-  <!-- Children Section -->
-  <div class="mt-20 max-w-7xl mx-auto px-6">
-    <h3 class="text-3xl font-bold text-center text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-800 mb-12">
-      The Okewunmi Children
-    </h3>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-      
-      <!-- Example Child Bio -->
-      <div class="bg-white p-8 rounded-2xl shadow-xl flex flex-col items-center text-center transform hover:scale-105 transition duration-500">
-        <img src="https://source.unsplash.com/200x200/?woman,portrait" alt="Oshode Damilola"
-             class="w-32 h-32 object-cover rounded-full shadow-lg mb-4">
-        <h4 class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-800 mb-3">
-          Oshode <span class="text-blue-700">Damilola</span> (née Mama Oshode)
-        </h4>
-        <p class="text-gray-700 leading-relaxed">
-          The firstborn of the family, <b class="text-blue-700">Damilola</b>, stands as a model of resilience and industriousness. 
-          She studied Computer Science at Ire Ekiti Polytechnic and became a leather materials mogul. She is happily married to 
-          <span class="text-purple-700">Mr. Oshode Damilare</span>, and their union is blessed with two children: 
-          <span class="text-indigo-700">Ademide</span> and <span class="text-indigo-700">Iremide</span>.
-        </p>
-      </div>
-
-      <!-- Child 2 -->
-      <div class="bg-white p-8 rounded-2xl shadow-xl flex flex-col items-center text-center transform hover:scale-105 transition duration-500">
-        <img src="https://source.unsplash.com/200x200/?man,portrait" alt="Engr. Okewunmi Ayomide"
-             class="w-32 h-32 object-cover rounded-full shadow-lg mb-4">
-        <h4 class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-800 mb-3">
-          Engr. Okewunmi <span class="text-blue-700">Ayomide</span>
-        </h4>
-        <p class="text-gray-700 leading-relaxed">
-          The second-born and first son, <b class="text-blue-700">Ayomide</b>, is a skilled engineer in heavy-duty machine repairs. 
-          He is launching <span class="text-purple-700">“Okewunmi Autos”</span> to redefine the automobile industry. 
-          He is married to <span class="text-indigo-700">Simisola Okewunmi</span>, and they are blessed with a son, 
-          <span class="text-indigo-700">Simon Okewunmi</span>.
-        </p>
-      </div>
-<!-- Child 3 -->
-      <div class="bg-white p-8 rounded-2xl shadow-xl flex flex-col items-center text-center transform hover:scale-105 transition duration-500">
-        <img src="https://source.unsplash.com/200x200/?man,smile" alt="Okewunmi Oluwagbenga"
-             class="w-32 h-32 object-cover rounded-full shadow-lg mb-4">
-        <h4 class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-800 mb-3">
-          Okewunmi <span class="text-blue-700">Oluwagbenga</span>
-        </h4>
-        <p class="text-gray-700 leading-relaxed">
-          The third-born, <b class="text-blue-700">Oluwagbenga</b>, embodies entrepreneurial creativity in the shoe and fashion industry.  
-          With boldness and innovation, he blends tradition with modern trends. He is happily married and blessed with children, continuing 
-          the <span class="text-purple-700">Okewunmi family legacy</span>.
-        </p>
-      </div>
-
-      <!-- Child 4 -->
-      <div class="bg-white p-8 rounded-2xl shadow-xl flex flex-col items-center text-center transform hover:scale-105 transition duration-500">
-        <img src="https://source.unsplash.com/200x200/?woman,smile" alt="Okewunmi Opeyemi"
-             class="w-32 h-32 object-cover rounded-full shadow-lg mb-4">
-        <h4 class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-800 mb-3">
-          Okewunmi <span class="text-blue-700">Opeyemi</span> (Mrs. Mathew)
-        </h4>
-        <p class="text-gray-700 leading-relaxed">
-          The fourth-born, <b class="text-blue-700">Opeyemi</b>, is a woman of elegance and intelligence.  
-          A graduate of the University of Lagos, she thrives in the fabric and textile industry.  
-          She is happily married to <span class="text-purple-700">Pastor Mathew</span>, and together they are raising a godly family.
-        </p>
-      </div>
-
-      <!-- Child 5 -->
-      <div class="bg-white p-8 rounded-2xl shadow-xl flex flex-col items-center text-center transform hover:scale-105 transition duration-500">
-        <img src="https://source.unsplash.com/200x200/?pastor,man" alt="Pastor Okewunmi Abayomi"
-             class="w-32 h-32 object-cover rounded-full shadow-lg mb-4">
-        <h4 class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-800 mb-3">
-          Pastor Okewunmi <span class="text-blue-700">Abayomi</span> (Yomi)
-        </h4>
-        <p class="text-gray-700 leading-relaxed">
-          The fifth-born, <b class="text-blue-700">Yomi</b>, is both a scholar and minister.  
-          He graduated with Distinction in Insurance from The Polytechnic Ibadan and later with First-Class honors from UI.  
-          Today, he pastors at <span class="text-purple-700">Salvation Proclaimers Anointed Church</span> and leads Edu Top Consultant.  
-          He is married to <span class="text-indigo-700">Dr. Kehinde Okewunmi</span>, and they are blessed with a son.
-        </p>
-      </div>
-
-      <!-- Child 6 -->
-      <div class="bg-white p-8 rounded-2xl shadow-xl flex flex-col items-center text-center transform hover:scale-105 transition duration-500">
-        <img src="https://source.unsplash.com/200x200/?lady,portrait" alt="Okewunmi Motunrayo"
-             class="w-32 h-32 object-cover rounded-full shadow-lg mb-4">
-        <h4 class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-800 mb-3">
-          Okewunmi <span class="text-blue-700">Motunrayo</span> (Mrs. Lucky Aba)
-        </h4>
-        <p class="text-gray-700 leading-relaxed">
-          The sixth-born, <b class="text-blue-700">Motunrayo</b>, is a graduate of Adekunle Ajasin University and a trained Laboratory Scientist.  
-          She is also a fashionista, NGO founder, minister, and entrepreneur.  
-          She is happily married to <span class="text-purple-700">Mr. Lucky Aba</span>, and they are blessed with a son.
-        </p>
-      </div>
-
-      <!-- Child 7 -->
-      <div class="bg-white p-8 rounded-2xl shadow-xl flex flex-col items-center text-center transform hover:scale-105 transition duration-500">
-        <img src="https://source.unsplash.com/200x200/?young,man" alt="Okewunmi Timileyin"
-             class="w-32 h-32 object-cover rounded-full shadow-lg mb-4">
-        <h4 class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-800 mb-3">
-          Okewunmi <span class="text-blue-700">Timileyin</span>
-        </h4>
-        <p class="text-gray-700 leading-relaxed">
-          The seventh-born, <b class="text-blue-700">Timileyin</b>, is a graduate of Counseling Psychology from OOU.  
-          He is the founder of <span class="text-purple-700">Triangle of Scholars</span>, a poet, novelist, software developer, 
-          cybersecurity graduate, and media director at Kingdom Citizens Church.  
-          Though unmarried, he is in a promising relationship.
-        </p>
-      </div>
-
-      <!-- Child 8 -->
-      <div class="bg-white p-8 rounded-2xl shadow-xl flex flex-col items-center text-center transform hover:scale-105 transition duration-500">
-        <img src="https://source.unsplash.com/200x200/?student,man" alt="Okewunmi Pelumi Paul"
-             class="w-32 h-32 object-cover rounded-full shadow-lg mb-4">
-        <h4 class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-800 mb-3">
-          Okewunmi <span class="text-blue-700">Pelumi Paul</span>
-        </h4>
-        <p class="text-gray-700 leading-relaxed">
-          The last-born, <b class="text-blue-700">Pelumi Paul</b>, is a law student at Kola Daisi University, Ibadan.  
-          He is also a tech entrepreneur, Amazon affiliate marketer, poet, novelist, motivational speaker, and founder of 
-          <span class="text-purple-700">Upphillan TV</span>.  
-          Known as the <span class="text-indigo-700">youngest motivational speaker in Africa</span>, his life inspires many.
-        </p>
-  </div>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Okewunmi Family Tree</title>
-  <style>
-    body {
-      font-family: "Poppins", sans-serif;
-      background: linear-gradient(to bottom right, #f8f9fc, #e9ecf5);
-      margin: 0;
-      padding: 20px;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 2.5rem;
-      color: #4b0082;
-      margin-bottom: 40px;
-    }
-
-    .tree {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 40px;
-    }
-
-    .generation {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      width: 100%;
-      max-width: 1200px;
-    }
-
-    .member {
-      text-align: center;
-    }
-
-    .member img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 4px solid #4b0082;
-      object-fit: cover;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .member img:hover {
-      transform: scale(1.05);
-    }
-
-    .member h3 {
-      margin: 10px 0 5px;
-      font-size: 1.2rem;
-      color: #003366;
-      cursor: pointer;
-    }
-
-    .bio {
-      display: none;
-      background: #fff;
-      padding: 15px;
-      margin-top: 10px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      font-size: 0.95rem;
-      text-align: left;
-      animation: fadeIn 0.5s ease;
-    }
-
-    .bio.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2rem;
-      }
-      .member img {
-        width: 100px;
-        height: 100px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <h1>Okewunmi Solomon Dynasty - Family Tree</h1>
-
-  <div class="tree">
-
-    <!-- Founders -->
-    <div class="generation">
-      <div class="member">
-        <img src="https://via.placeholder.com/150" alt="Elder Solomon" onclick="toggleBio('bio1')">
-        <h3 onclick="toggleBio('bio1')">Elder Solomon Okewunmi</h3>
-        <div class="bio" id="bio1">
-          <p><b>Elder Solomon Okewunmi</b>, the patriarch of the Okewunmi Dynasty, a man of faith, resilience, and dedication...</p>
-        </div>
-      </div>
-      <div class="member">
-        <img src="https://via.placeholder.com/150" alt="Deaconess Okewunmi" onclick="toggleBio('bio2')">
-        <h3 onclick="toggleBio('bio2')">Deaconess Okewunmi</h3>
-        <div class="bio" id="bio2">
-          <p><b>Deaconess Okewunmi</b>, the matriarch of the dynasty, known for her nurturing love, prayers, and strength...</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Children -->
-    <div class="generation">
-      <div class="member">
-        <img src="https://via.placeholder.com/150" alt="Okewunmi Damilola" onclick="toggleBio('bio3')">
-        <h3 onclick="toggleBio('bio3')">Okewunmi Damilola</h3>
-        <div class="bio" id="bio3">
-          <p>Damilola married in 2018 and had her first child in 2019...</p>
-        </div>
-      </div>
-      <div class="member">
-        <img src="https://via.placeholder.com/150" alt="Okewunmi Ayomide" onclick="toggleBio('bio4')">
-        <h3 onclick="toggleBio('bio4')">Okewunmi Ayomide</h3>
-        <div class="bio" id="bio4">
-          <p>Ayomide married in February 2023, carrying forward the family legacy...</p>
-        </div>
-      </div>
-      <div class="member">
-        <img src="https://via.placeholder.com/150" alt="Okewunmi Abayomi" onclick="toggleBio('bio5')">
-        <h3 onclick="toggleBio('bio5')">Okewunmi Abayomi</h3>
-        <div class="bio" id="bio5">
-          <p>Abayomi married in 2023, continuing the heritage of the Okewunmi name...</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <script>
-    function toggleBio(id) {
-      const bio = document.getElementById(id);
-      bio.classList.toggle("active");
-    }
-  </script>
-</body>
-          </html>

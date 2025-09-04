@@ -1,161 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Okewunmi Solomon Dynasty</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root{
-      --gold:#ffd700;
-      --royal:#0b2e59;
+    /* Gradient animation */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:"Georgia", serif;background:#000;color:#fff;overflow-x:hidden}
-
-    header{
-      position:fixed;top:0;left:0;right:0;z-index:50;
-      backdrop-filter: blur(6px);
-      background:rgba(0,0,0,.5);
-      padding:15px;text-align:center;
-    }
-    header h1{
-      font-family:"Cinzel", serif;
-      font-size:clamp(1.5rem,5vw,3rem);
-      font-weight:900;
-      color:var(--gold);
-      letter-spacing:2px;
-      text-shadow:0 4px 12px rgba(0,0,0,.7);
-      animation: fadeDown 1.5s ease;
+    .gradient-bg {
+      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb, #8fd3f4, #84fab0);
+      background-size: 400% 400%;
+      animation: gradientShift 20s ease infinite;
     }
 
-    .hero{
-      height:100vh;
-      position:relative;
-      overflow:hidden;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-    }
-    .slide{
-      position:absolute;inset:0;
-      background-size:cover;background-position:center;
-      opacity:0;transition:opacity 1.5s ease-in-out;
-    }
-    .slide.active{opacity:1}
-
-    .overlay{
-      position:absolute;inset:0;
-      background:linear-gradient(180deg,rgba(0,0,0,.3),rgba(0,0,0,.65));
+    /* Hero background */
+    .hero {
+      background-size: cover;
+      background-position: center;
+      transition: background-image 2s ease-in-out;
     }
 
-    .content{
-      position:relative;z-index:5;
-      padding:20px;
-      max-width:900px;
+    /* Scripture fade */
+    .fade {
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
     }
-    .verse{
-      font-size:clamp(1.2rem,3vw,2rem);
-      font-weight:600;
-      line-height:1.5;
-      text-shadow:0 4px 15px rgba(0,0,0,.8);
-      opacity:0;transition:opacity 1.5s ease-in-out;
-    }
-    .verse.show{opacity:1}
-
-    @keyframes fadeDown{
-      from{opacity:0;transform:translateY(-40px)}
-      to{opacity:1;transform:translateY(0)}
+    .fade.show {
+      opacity: 1;
     }
 
-    footer{
-      background:#0c0c0c;color:#ddd;text-align:center;
-      padding:18px;font-size:.9rem;
-      border-top:1px solid rgba(255,255,255,.1)
+    /* Slide-in headline */
+    @keyframes slideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
-
-    @media (max-width:720px){
-      header h1{font-size:1.6rem}
-      .verse{font-size:1.2rem}
+    .headline {
+      animation: slideIn 2s ease forwards;
     }
   </style>
 </head>
-<body>
-  <header>
-    <h1>Okewunmi Solomon Dynasty</h1>
-  </header>
+<body class="font-serif">
 
-  <main class="hero" aria-live="polite">
-    <div id="slides"></div>
-    <div class="overlay"></div>
-    <div class="content">
-      <div id="verse" class="verse">Loading…</div>
+  <!-- Hero Section -->
+  <section id="hero" class="hero relative h-screen flex items-center justify-center text-center text-white gradient-bg">
+    <div class="absolute inset-0 bg-black bg-opacity-60"></div> <!-- overlay -->
+    <div class="relative z-10 px-6">
+      <h1 class="headline text-5xl md:text-7xl font-bold mb-6">Okewunmi Solomon Dynasty</h1>
+      <p id="scripture" class="fade text-lg md:text-2xl max-w-2xl mx-auto leading-relaxed italic"></p>
     </div>
-  </main>
-
-  <footer>
-    “But as for me and my household, we will serve the Lord.” — Joshua 24:15<br/>
-    &copy; 2025 Okewunmi Solomon Dynasty
-  </footer>
+  </section>
 
   <script>
-    const slidesData = [
-      {
-        text: "“Love is patient, love is kind.” — 1 Corinthians 13:4",
-        bg: "https://source.unsplash.com/1600x900/?bible"
-      },
-      {
-        text: "“Train up a child in the way he should go.” — Proverbs 22:6",
-        bg: "https://source.unsplash.com/1600x900/?church"
-      },
-      {
-        text: "“The fear of the Lord is the beginning of wisdom.” — Proverbs 9:10",
-        bg: "https://source.unsplash.com/1600x900/?cross"
-      },
-      {
-        text: "“Children are a heritage from the Lord.” — Psalm 127:3",
-        bg: "https://source.unsplash.com/1600x900/?children,christian"
-      },
-      {
-        text: "“The light shines in the darkness, and the darkness has not overcome it.” — John 1:5",
-        bg: "https://source.unsplash.com/1600x900/?light,faith"
-      },
-      {
-        text: "“Family is the compass that guides us.” — Unknown",
-        bg: "https://source.unsplash.com/1600x900/?family,christian"
-      }
+    /* Background images */
+    const images = [
+      "https://images.unsplash.com/photo-1508780709619-79562169bc64?auto=format&fit=crop&w=1600&q=80", // Cross
+      "https://images.unsplash.com/photo-1544168190-79c17527004f?auto=format&fit=crop&w=1600&q=80", // Bible
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80", // Prayer
+      "https://images.unsplash.com/photo-1606046604972-77cc76aee944?auto=format&fit=crop&w=1600&q=80", // Family
+      "https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1600&q=80"  // Church
     ];
 
-    const slidesHost = document.getElementById('slides');
-    const verseBox = document.getElementById('verse');
+    /* Scriptures */
+    const scriptures = [
+      "“As for me and my house, we will serve the LORD.” – Joshua 24:15",
+      "“Train up a child in the way he should go; even when he is old he will not depart from it.” – Proverbs 22:6",
+      "“The righteous who walks in his integrity—blessed are his children after him!” – Proverbs 20:7",
+      "“Behold, children are a heritage from the LORD, the fruit of the womb a reward.” – Psalm 127:3",
+      "“But seek first the kingdom of God and His righteousness, and all these things will be added to you.” – Matthew 6:33"
+    ];
 
-    slidesData.forEach((s, i)=>{
-      const d = document.createElement('div');
-      d.className = 'slide' + (i===0 ? ' active' : '');
-      d.style.backgroundImage = `url('${s.bg}')`;
-      slidesHost.appendChild(d);
-    });
+    let currentImage = 0;
+    let currentVerse = 0;
+    const hero = document.getElementById("hero");
+    const scriptureElement = document.getElementById("scripture");
 
-    let idx = 0;
-    function show(i){
-      const allSlides = document.querySelectorAll('.slide');
-      allSlides.forEach(el => el.classList.remove('active'));
-      allSlides[i].classList.add('active');
-
-      verseBox.classList.remove('show');
-      setTimeout(()=>{
-        verseBox.textContent = slidesData[i].text;
-        verseBox.classList.add('show');
-      },500); // slight delay for smooth fade
+    function changeBackground() {
+      hero.style.backgroundImage = `url(${images[currentImage]})`;
+      currentImage = (currentImage + 1) % images.length;
     }
 
-    function next(){
-      idx = (idx + 1) % slidesData.length;
-      show(idx);
+    function changeScripture() {
+      scriptureElement.classList.remove("show");
+      setTimeout(() => {
+        scriptureElement.textContent = scriptures[currentVerse];
+        scriptureElement.classList.add("show");
+        currentVerse = (currentVerse + 1) % scriptures.length;
+      }, 1000);
     }
 
-    show(0);
-    setInterval(next, 6000); // 6s per slide
+    // Initial load
+    changeBackground();
+    changeScripture();
+
+    // Rotate every 8s
+    setInterval(changeBackground, 8000);
+    setInterval(changeScripture, 8000);
   </script>
+
 </body>
 </html>

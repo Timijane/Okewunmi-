@@ -139,3 +139,168 @@
 
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About - Okewunmi Solomon Dynasty</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #f6d365, #fda085);
+    color: #333;
+    line-height: 1.6;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 20px;
+  }
+
+  /* Section Titles */
+  h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  h1 {
+    font-size: 3rem;
+    color: #4B0082;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+  }
+
+  h2 {
+    font-size: 2.2rem;
+    color: #FF4500;
+  }
+
+  h3 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+
+  /* Dynasty Intro */
+  .dynasty-intro {
+    background: linear-gradient(to right, #ffecd2, #fcb69f);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    margin-bottom: 60px;
+  }
+
+  /* Children Grid */
+  .children-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+  }
+
+  .child-card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .child-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+  }
+
+  .child-card img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 4px solid #ff7e5f;
+  }
+
+  .child-card h4 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .child-card p {
+    color: #555;
+  }
+
+  /* Responsive */
+  @media(max-width:768px){
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 1.8rem; }
+    h3 { font-size: 1.5rem; }
+    .child-card img { width: 120px; height: 120px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Dynasty Introduction -->
+    <section class="dynasty-intro">
+      <h1>Welcome to the Okewunmi Dynasty</h1>
+      <p>The Okewunmi Dynasty is a family rooted in truth, faith, sacrifice, and legacy. At the heart of this great family is Elder Solomon Okewunmi, a man widely respected for his integrity, wisdom, and selfless devotion. Born and raised in Ogun State, Egba, Abeokuta—Itori Oke, Elder Solomon exemplifies a life of service to both family and community.</p>
+      <p>Now at the age of 71 (in 2025), Elder Solomon continues to stand as a pillar of strength and guidance. By his side is his beloved wife, Deaconess Adebola Okewunmi, a virtuous woman and nurturing mother. Together, they have built a strong family rooted in love, discipline, and godliness.</p>
+    </section>
+
+    <!-- Children Section -->
+    <section>
+      <h2>The Okewunmi Children</h2>
+      <div class="children-grid">
+
+        <!-- Child Example -->
+        <div class="child-card">
+          <img src="https://source.unsplash.com/200x200/?woman,portrait" alt="Oshode Damilola">
+          <h4>Oshode Damilola</h4>
+          <p>The firstborn, Damilola, is a model of resilience and wisdom. A Computer Science graduate, she is a successful entrepreneur in the leather industry. Married to Mr. Oshode Damilare, they are blessed with two children, Ademide and Iremide.</p>
+        </div>
+
+        <div class="child-card">
+          <img src="https://source.unsplash.com/200x200/?man,portrait" alt="Engr. Okewunmi Ayomide">
+          <h4>Engr. Okewunmi Ayomide</h4>
+          <p>The second-born and first son, Ayomide, is a skilled engineer launching “Okewunmi Autos.” Married to Simisola Okewunmi, they are blessed with a son, Simon Okewunmi.</p>
+        </div>
+
+        <div class="child-card">
+          <img src="https://source.unsplash.com/200x200/?man,smile" alt="Okewunmi Oluwagbenga">
+          <h4>Okewunmi Oluwagbenga</h4>
+          <p>The third-born, Oluwagbenga, is an entrepreneur in the shoe and fashion industry. Married with a family, he blends tradition with modern trends in his business ventures.</p>
+        </div>
+
+        <div class="child-card">
+          <img src="https://source.unsplash.com/200x200/?woman,smile" alt="Okewunmi Opeyemi">
+          <h4>Okewunmi Opeyemi</h4>
+          <p>The fourth-born, Opeyemi, excels in the fabric and textile industry. Married to Pastor Mathew, she continues the legacy of faith and excellence.</p>
+        </div>
+
+        <!-- Add remaining children here similarly -->
+
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>
